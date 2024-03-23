@@ -8,20 +8,14 @@ import * as dotenv from 'dotenv';
 
 dotenv.config();
 
-// Uncomment to use Edge Runtime.
-// export const config = {
-//   runtime: 'edge',
-// }
-
-let baseContractAddress = '0xf4e4E2316f09bC48800041403Db09c650e27223e' as `0x${string}`;
-let opContractAddress = "0x7586d4f401288f129E765675a9Cc3869e996B573" as `0x${string}`;
-let baseChannelName = ethers.encodeBytes32String("channel-11");
-let opChannelName = ethers.encodeBytes32String("channel-10");
-
-let opUCAddress = process.env.OP_UC_MW_SIM;
-let baseUCAddress = process.env.BASE_UC_MW_SIM;
-const opDispatcherAddress = "0x6C9427E8d770Ad9e5a493D201280Cc178125CEc0";
-const baseDispatcherAddress = "0x0dE926fE2001B2c96e9cA6b79089CEB276325E9F";
+let baseContractAddress = (process.env.BASE_CONTRACT || '0xf4e4E2316f09bC48800041403Db09c650e27223e') as `0x${string}`;
+let opContractAddress = (process.env.OP_CONTRACT || "0x7586d4f401288f129E765675a9Cc3869e996B573") as `0x${string}`;
+let baseChannelName = ethers.encodeBytes32String(process.env.BASE_CHANNEL || "channel-11");
+let opChannelName = ethers.encodeBytes32String(process.env.OP_CHANNEL || "channel-10");
+let opUCAddress = process.env.OP_UC_MW_SIM || "0xC3318ce027C560B559b09b1aA9cA4FEBDDF252F5";
+let baseUCAddress = process.env.BASE_UC_MW_SIM || "0x5031fb609569b67608Ffb9e224754bb317f174cD";
+const opDispatcherAddress = process.env.OP_DISPATCHER || "0x6C9427E8d770Ad9e5a493D201280Cc178125CEc0";
+const baseDispatcherAddress = process.env.BASE_DISPATCHER || "0x0dE926fE2001B2c96e9cA6b79089CEB276325E9F";
 const opProvider = new JsonRpcProvider(process.env.OPTIMISM_RPC, 11155420);
 const baseProvider = new JsonRpcProvider(process.env.BASE_RPC, 84532);
 const opDispatcherContract = new ethers.Contract(opDispatcherAddress, dispatcherAbi, opProvider);
