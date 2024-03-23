@@ -162,7 +162,7 @@ app.frame("/verify-recv-packet", async (c) => {
         Verify Packet Receipt
       </Button>,
       <Button.Link href={`https://base-sepolia.blockscout.com/tx/${transactionId}`}>
-        Show Me Send Transaction
+        Send Transaction
       </Button.Link>
     ],
   });
